@@ -7,7 +7,7 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector'}
+                {:selector, 1, ~c"my_selector"}
               ], 1}
   end
 
@@ -17,9 +17,9 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector'},
+                {:selector, 1, ~c"my_selector"},
                 {:equal, 1},
-                {:selector, 1, 'value'}
+                {:selector, 1, ~c"value"}
               ], 1}
   end
 
@@ -29,9 +29,9 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector'},
+                {:selector, 1, ~c"my_selector"},
                 {:equal, 1},
-                {:value, 1, '2019-02-02T18:32:12Z'}
+                {:value, 1, ~c"2019-02-02T18:32:12Z"}
               ], 1}
   end
 
@@ -41,12 +41,12 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector'},
+                {:selector, 1, ~c"my_selector"},
                 {:equal, 1},
                 {:"(", 1},
                 {:arg_int, 1, 1},
                 {:or_op, 1},
-                {:selector, 1, 'value'},
+                {:selector, 1, ~c"value"},
                 {:")", 1}
               ], 1}
   end
@@ -57,7 +57,7 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector'},
+                {:selector, 1, ~c"my_selector"},
                 {:equal, 1},
                 {:arg_bool, 1, true}
               ], 1}
@@ -69,7 +69,7 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector'},
+                {:selector, 1, ~c"my_selector"},
                 {:equal, 1},
                 {:arg_bool, 1, false}
               ], 1}
@@ -81,7 +81,7 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector'},
+                {:selector, 1, ~c"my_selector"},
                 {:equal, 1},
                 {:arg_int, 1, 123}
               ], 1}
@@ -93,7 +93,7 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector'},
+                {:selector, 1, ~c"my_selector"},
                 {:equal, 1},
                 {:arg_int, 1, 123}
               ], 1}
@@ -105,7 +105,7 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector'},
+                {:selector, 1, ~c"my_selector"},
                 {:equal, 1},
                 {:arg_int, 1, -123}
               ], 1}
@@ -117,7 +117,7 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector'},
+                {:selector, 1, ~c"my_selector"},
                 {:equal, 1},
                 {:arg_float, 1, 123.5}
               ], 1}
@@ -129,7 +129,7 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector'},
+                {:selector, 1, ~c"my_selector"},
                 {:equal, 1},
                 {:arg_float, 1, 123.5}
               ], 1}
@@ -141,7 +141,7 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector'},
+                {:selector, 1, ~c"my_selector"},
                 {:equal, 1},
                 {:arg_float, 1, -123.5}
               ], 1}
@@ -153,7 +153,7 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector'},
+                {:selector, 1, ~c"my_selector"},
                 {:equal, 1},
                 {:arg_float, 1, -123.5e-10}
               ], 1}
@@ -165,9 +165,9 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector'},
+                {:selector, 1, ~c"my_selector"},
                 {:equal, 1},
-                {:value, 1, 'my value != weird;,'}
+                {:value, 1, ~c"my value != weird;,"}
               ], 1}
   end
 
@@ -177,9 +177,9 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector'},
+                {:selector, 1, ~c"my_selector"},
                 {:equal, 1},
-                {:value, 1, 'my "value" != \'weird\';,'}
+                {:value, 1, ~c'my "value" != \'weird\';,'}
               ], 1}
   end
 
@@ -189,9 +189,9 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector'},
+                {:selector, 1, ~c"my_selector"},
                 {:equal, 1},
-                {:value, 1, 'my value != weird;,'}
+                {:value, 1, ~c"my value != weird;,"}
               ], 1}
   end
 
@@ -201,9 +201,9 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector'},
+                {:selector, 1, ~c"my_selector"},
                 {:equal, 1},
-                {:value, 1, 'my "value" != \'weird\';,'}
+                {:value, 1, ~c'my "value" != \'weird\';,'}
               ], 1}
   end
 
@@ -213,17 +213,17 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector1'},
+                {:selector, 1, ~c"my_selector1"},
                 {:equal, 1},
-                {:selector, 1, 'value1'},
+                {:selector, 1, ~c"value1"},
                 {:or_op, 1},
-                {:selector, 1, 'my_selector2'},
+                {:selector, 1, ~c"my_selector2"},
                 {:equal, 1},
-                {:selector, 1, 'value2'},
+                {:selector, 1, ~c"value2"},
                 {:and_op, 1},
-                {:selector, 1, 'my_selector3'},
+                {:selector, 1, ~c"my_selector3"},
                 {:equal, 1},
-                {:selector, 1, 'value3'}
+                {:selector, 1, ~c"value3"}
               ], 1}
   end
 
@@ -233,17 +233,17 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector1'},
+                {:selector, 1, ~c"my_selector1"},
                 {:equal, 1},
-                {:selector, 1, 'value1'},
+                {:selector, 1, ~c"value1"},
                 {:or_op, 1},
-                {:selector, 1, 'my_selector2'},
+                {:selector, 1, ~c"my_selector2"},
                 {:equal, 1},
-                {:selector, 1, 'value2'},
+                {:selector, 1, ~c"value2"},
                 {:or_op, 1},
-                {:selector, 1, 'my_selector3'},
+                {:selector, 1, ~c"my_selector3"},
                 {:equal, 1},
-                {:selector, 1, 'value3'}
+                {:selector, 1, ~c"value3"}
               ], 1}
   end
 
@@ -253,17 +253,17 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector1'},
+                {:selector, 1, ~c"my_selector1"},
                 {:equal, 1},
-                {:selector, 1, 'value1'},
+                {:selector, 1, ~c"value1"},
                 {:and_op, 1},
-                {:selector, 1, 'my_selector2'},
+                {:selector, 1, ~c"my_selector2"},
                 {:equal, 1},
-                {:selector, 1, 'value2'},
+                {:selector, 1, ~c"value2"},
                 {:and_op, 1},
-                {:selector, 1, 'my_selector3'},
+                {:selector, 1, ~c"my_selector3"},
                 {:equal, 1},
-                {:selector, 1, 'value3'}
+                {:selector, 1, ~c"value3"}
               ], 1}
   end
 
@@ -274,21 +274,21 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector1'},
+                {:selector, 1, ~c"my_selector1"},
                 {:equal, 1},
-                {:selector, 1, 'value1'},
+                {:selector, 1, ~c"value1"},
                 {:or_op, 1},
-                {:selector, 1, 'my_selector2'},
+                {:selector, 1, ~c"my_selector2"},
                 {:equal, 1},
-                {:selector, 1, 'value2'},
+                {:selector, 1, ~c"value2"},
                 {:or_op, 1},
-                {:selector, 1, 'my_selector3'},
+                {:selector, 1, ~c"my_selector3"},
                 {:equal, 1},
-                {:selector, 1, 'value3'},
+                {:selector, 1, ~c"value3"},
                 {:or_op, 1},
-                {:selector, 1, 'my_selector4'},
+                {:selector, 1, ~c"my_selector4"},
                 {:equal, 1},
-                {:selector, 1, 'value4'}
+                {:selector, 1, ~c"value4"}
               ], 1}
   end
 
@@ -299,21 +299,21 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector1'},
+                {:selector, 1, ~c"my_selector1"},
                 {:equal, 1},
-                {:selector, 1, 'value1'},
+                {:selector, 1, ~c"value1"},
                 {:and_op, 1},
-                {:selector, 1, 'my_selector2'},
+                {:selector, 1, ~c"my_selector2"},
                 {:equal, 1},
-                {:selector, 1, 'value2'},
+                {:selector, 1, ~c"value2"},
                 {:and_op, 1},
-                {:selector, 1, 'my_selector3'},
+                {:selector, 1, ~c"my_selector3"},
                 {:equal, 1},
-                {:selector, 1, 'value3'},
+                {:selector, 1, ~c"value3"},
                 {:and_op, 1},
-                {:selector, 1, 'my_selector4'},
+                {:selector, 1, ~c"my_selector4"},
                 {:equal, 1},
-                {:selector, 1, 'value4'}
+                {:selector, 1, ~c"value4"}
               ], 1}
   end
 
@@ -323,9 +323,9 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector1'},
+                {:selector, 1, ~c"my_selector1"},
                 {:equal, 1},
-                {:selector, 1, 'value1'}
+                {:selector, 1, ~c"value1"}
               ], 1}
   end
 
@@ -335,9 +335,9 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector1'},
+                {:selector, 1, ~c"my_selector1"},
                 {:not_equal, 1},
-                {:selector, 1, 'value1'}
+                {:selector, 1, ~c"value1"}
               ], 1}
   end
 
@@ -347,9 +347,11 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector1'},
-                {:comparison, 1, 'ge'},
-                {:selector, 1, 'value1'}
+                {:selector, 1, ~c"my_selector1"},
+                {:comparison, 1, ~c"ge"},
+                {:selector, 1, ~c"value1"}
+              ], 1}
+  end
 
   test "double_quoted utf-8" do
     payload = ~s|my_selector1=="cafè au crème"|
@@ -369,18 +371,18 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'my_selector1'},
+                {:selector, 1, ~c"my_selector1"},
                 {:equal, 1},
-                {:selector, 1, 'value1'},
+                {:selector, 1, ~c"value1"},
                 {:or_op, 1},
                 {:"(", 1},
-                {:selector, 1, 'my_selector2'},
+                {:selector, 1, ~c"my_selector2"},
                 {:equal, 1},
-                {:selector, 1, 'value2'},
+                {:selector, 1, ~c"value2"},
                 {:and_op, 1},
-                {:selector, 1, 'my_selector3'},
+                {:selector, 1, ~c"my_selector3"},
                 {:equal, 1},
-                {:selector, 1, 'value3'},
+                {:selector, 1, ~c"value3"},
                 {:")", 1}
               ], 1}
   end
@@ -392,57 +394,57 @@ defmodule FIQLExLexerTest do
     assert :fiql_lexer.string(to_charlist(payload)) ==
              {:ok,
               [
-                {:selector, 1, 'mon_selector'},
+                {:selector, 1, ~c"mon_selector"},
                 {:equal, 1},
-                {:selector, 1, 'mavalue'},
+                {:selector, 1, ~c"mavalue"},
                 {:and_op, 1},
-                {:selector, 1, 'selector.2'},
+                {:selector, 1, ~c"selector.2"},
                 {:not_equal, 1},
-                {:value, 1, 'deuxieme;,=\' \'v"alu\'e'},
+                {:value, 1, ~c'deuxieme;,=\' \'v"alu\'e'},
                 {:or_op, 1},
                 {:"(", 1},
-                {:selector, 1, 'encore_selector'},
-                {:comparison, 1, 'eq'},
-                {:value, 1, 'coucou ! \'moi="toi"'},
+                {:selector, 1, ~c"encore_selector"},
+                {:comparison, 1, ~c"eq"},
+                {:value, 1, ~c'coucou ! \'moi="toi"'},
                 {:and_op, 1},
                 {:"(", 1},
-                {:selector, 1, 'select1'},
-                {:comparison, 1, 'ge'},
+                {:selector, 1, ~c"select1"},
+                {:comparison, 1, ~c"ge"},
                 {:arg_bool, 1, true},
                 {:or_op, 1},
-                {:selector, 1, 'select2'},
+                {:selector, 1, ~c"select2"},
                 {:equal, 1},
                 {:arg_bool, 1, false},
                 {:")", 1},
                 {:and_op, 1},
-                {:selector, 1, 'select.encore'},
-                {:comparison, 1, 'le'},
+                {:selector, 1, ~c"select.encore"},
+                {:comparison, 1, ~c"le"},
                 {:arg_int, 1, 12},
                 {:and_op, 1},
-                {:selector, 1, 'select.encore2'},
-                {:comparison, 1, 'le'},
+                {:selector, 1, ~c"select.encore2"},
+                {:comparison, 1, ~c"le"},
                 {:arg_float, 1, 23.3443},
                 {:and_op, 1},
-                {:selector, 1, 'select.encore3'},
+                {:selector, 1, ~c"select.encore3"},
                 {:equal, 1},
                 {:arg_float, 1, 2.389e-33},
                 {:and_op, 1},
-                {:selector, 1, 'select.int'},
+                {:selector, 1, ~c"select.int"},
                 {:equal, 1},
                 {:arg_int, 1, -23},
                 {:and_op, 1},
-                {:selector, 1, 'select.pos'},
+                {:selector, 1, ~c"select.pos"},
                 {:equal, 1},
                 {:arg_float, 1, 34.5},
                 {:")", 1},
                 {:or_op, 1},
-                {:selector, 1, 'duration'},
-                {:comparison, 1, 'le'},
-                {:value, 1, '-P1D'},
+                {:selector, 1, ~c"duration"},
+                {:comparison, 1, ~c"le"},
+                {:value, 1, ~c"-P1D"},
                 {:and_op, 1},
-                {:selector, 1, 'time'},
-                {:comparison, 1, 'ge'},
-                {:value, 1, '2019-12-34T18:23:23.234Z'}
+                {:selector, 1, ~c"time"},
+                {:comparison, 1, ~c"ge"},
+                {:value, 1, ~c"2019-12-34T18:23:23.234Z"}
               ], 1}
   end
 end

@@ -264,7 +264,7 @@ defmodule FIQLExParserTest do
     {:ok, tokens, _} = :fiql_lexer.string(to_charlist(payload))
 
     assert :fiql_parser.parse(tokens) ==
-             {:error, {1, :fiql_parser, ['syntax error before: ', []]}}
+             {:error, {1, :fiql_parser, [~c"syntax error before: ", []]}}
   end
 
   test "Missing parenthesis in list" do
@@ -272,6 +272,6 @@ defmodule FIQLExParserTest do
     {:ok, tokens, _} = :fiql_lexer.string(to_charlist(payload))
 
     assert :fiql_parser.parse(tokens) ==
-             {:error, {1, :fiql_parser, ['syntax error before: ', []]}}
+             {:error, {1, :fiql_parser, [~c"syntax error before: ", []]}}
   end
 end
