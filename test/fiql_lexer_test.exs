@@ -350,6 +350,16 @@ defmodule FIQLExLexerTest do
                 {:selector, 1, 'my_selector1'},
                 {:comparison, 1, 'ge'},
                 {:selector, 1, 'value1'}
+
+  test "double_quoted utf-8" do
+    payload = ~s|my_selector1=="cafè au crème"|
+
+    assert :fiql_lexer.string(to_charlist(payload)) ==
+             {:ok,
+              [
+                {:selector, 1, ~c"my_selector1"},
+                {:equal, 1},
+                {:value, 1, ~c"cafè au crème"}
               ], 1}
   end
 
